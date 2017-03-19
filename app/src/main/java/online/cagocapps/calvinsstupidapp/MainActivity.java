@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private String path;
     private Button button;
     private Long length;
+    private Handler h;
+    private Runnable r;
 
 
     @Override
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (videoView.isPlaying()) goBack();
+                h.removeCallbacks(r);
                 return true;
             }
         }
@@ -64,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
             videoView.setMediaController(mc);
             videoView.setVideoURI(Uri.parse(path));
             videoView.start();
-            Runnable r = new Runnable() {
+            r = new Runnable() {
                 @Override
                 public void run() {
                     goBack();
                 }
             };
-            Handler h = new Handler();
+            h = new Handler();
             h.postDelayed(r, length);
         } else goBack();
     }
