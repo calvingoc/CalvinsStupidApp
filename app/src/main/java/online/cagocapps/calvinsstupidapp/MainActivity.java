@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         videoView.stopPlayback();
         videoView.setVisibility(View.GONE);
         i++;
-        if (i == 5) i = 1;
+        if (i >= 5) i = 1;
         //i = (int)(Math.random() *5+1);
 
     }
