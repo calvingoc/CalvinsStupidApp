@@ -5,15 +5,16 @@ import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
-import math;
+
 
 public class MainActivity extends AppCompatActivity {
     private VideoView videoView;
-    private int i = (int)(Math.random(i)*5+1);    
+    private int i = (int)(Math.random() *5+1);
     private String path;
     private Button button;
     private Long length;
@@ -26,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
         videoView = (VideoView) findViewById(R.id.videoView);
         button = (Button) findViewById(R.id.button);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        videoView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (videoView.isPlaying()) goBack();
+                return true;
+            }
+        }
+    );
     }
 
     public void playVideo(View view) {
@@ -63,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
             };
             Handler h = new Handler();
             h.postDelayed(r, length);
-        }
+        } else goBack();
     }
 
     private void goBack(){
-        while (videoView.isPlaying()){}
         videoView.stopPlayback();
         videoView.setVisibility(View.GONE);
         button.setVisibility(View.VISIBLE);
+        i = (int)(Math.random() *5+1);
     }
 }
