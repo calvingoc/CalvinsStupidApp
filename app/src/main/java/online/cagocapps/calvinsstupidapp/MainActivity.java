@@ -32,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
         videoView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (videoView.isPlaying()) goBack();
-                h.removeCallbacks(r);
+                if (videoView.isPlaying()) {
+                    goBack();
+                    h.removeCallbacks(r);
+                }
                 return true;
             }
         }
