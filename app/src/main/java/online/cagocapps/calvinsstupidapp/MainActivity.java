@@ -14,7 +14,7 @@ import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
     private VideoView videoView;
-    private int i = (int)(Math.random() *5+1);
+    private int i = 1; //(int)(Math.random() *5+1);
     private String path;
     private Button button;
     private Long length;
@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void playVideo(View view) {
+        int l = (int) (Math.random()* 5 +1);
+        if ( l == 5 ) i = l;
         if (!videoView.isPlaying()) {
             if (i == 1) {
                 path = "android.resource://" + getPackageName() + "/" + R.raw.donteatme;
@@ -81,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
     private void goBack(){
         videoView.stopPlayback();
         videoView.setVisibility(View.GONE);
-        button.setVisibility(View.VISIBLE);
-        i = (int)(Math.random() *5+1);
+        i++;
+        if (i == 5) i = 1;
+        //i = (int)(Math.random() *5+1);
+
     }
 }
