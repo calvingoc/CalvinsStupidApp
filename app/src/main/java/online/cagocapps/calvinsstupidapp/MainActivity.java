@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
+import math;
 
 public class MainActivity extends AppCompatActivity {
     private VideoView videoView;
-    private int i = 0;
+    private int i = (int)(Math.random(i)*5+1);    
     private String path;
     private Button button;
     private Long length;
@@ -29,19 +30,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void playVideo(View view) {
         if (!videoView.isPlaying()) {
-            if (i == 0) {
+            if (i == 1) {
                 path = "android.resource://" + getPackageName() + "/" + R.raw.donteatme;
                 length = (long) 1750;
-            } else if (i == 1) {
+            } else if (i == 2) {
                 path = "android.resource://" + getPackageName() + "/" + R.raw.imalady;
                 length = (long) 4000;
-            } else if (i == 2) {
+            } else if (i == 3) {
                 path = "android.resource://" + getPackageName() + "/" + R.raw.peeingmyself;
                 length = (long) 1750;
-            } else if (i == 3) {
+            } else if (i == 4) {
                 path = "android.resource://" + getPackageName() + "/" + R.raw.scream;
                 length = (long) 4000;
-            } else {
+            } else if (i == 5) {
                 path = "android.resource://" + getPackageName() + "/" + R.raw.silentnight;
                 length = (long) 115000;
             }
@@ -70,7 +71,5 @@ public class MainActivity extends AppCompatActivity {
         videoView.stopPlayback();
         videoView.setVisibility(View.GONE);
         button.setVisibility(View.VISIBLE);
-        i = i +1;
-        if (i == 5) i = 0;
     }
 }
