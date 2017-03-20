@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
     private void goBack(){
         videoView.stopPlayback();
         videoView.setVisibility(View.GONE);
+        button.setVisibility(View.VISIBLE);
         i++;
         if (i >= 5) i = 1;
         //i = (int)(Math.random() *5+1);
