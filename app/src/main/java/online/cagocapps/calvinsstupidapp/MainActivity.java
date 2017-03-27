@@ -15,6 +15,7 @@ import android.widget.VideoView;
 public class MainActivity extends AppCompatActivity {
     private VideoView videoView;
     private int i = 1; //(int)(Math.random() *5+1);
+    private int prev = 1;
     private String path;
     private Button button;
     private Long length;
@@ -44,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void playVideo(View view) {
         int l = (int) (Math.random()* 5 +1);
-        if ( l == 5 ) i = l;
+        if ( l == 5 ){
+            prev = i;
+            i = l;
         if (!videoView.isPlaying()) {
             if (i == 1) {
                 path = "android.resource://" + getPackageName() + "/" + R.raw.donteatme;
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (i == 5) {
                 path = "android.resource://" + getPackageName() + "/" + R.raw.silentnight;
                 length = (long) 115000;
+                i = prev;
             }
             MediaController mc = new MediaController(videoView.getContext());
             mc.setAnchorView(videoView);
